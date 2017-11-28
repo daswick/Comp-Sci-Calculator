@@ -227,8 +227,6 @@ namespace Calculator
 			}
 		}
 
-		// Fix bug where deleting operator doesn't bring back up numbers
-
 		private void SetButtons()
 		{
 			if (label.Text.ToString() == string.Empty || label.Text.ToString()[label.Text.ToString().Length - 1] == ' ')
@@ -304,8 +302,6 @@ namespace Calculator
 
 				buttons[20].Enabled = true;
 				buttons[21].Enabled = true;
-
-				//label.Text = entries[entries.Length - 1];
 			}
 		}
 
@@ -339,132 +335,6 @@ namespace Calculator
 				return int.Parse(s.Substring(1, s.Length - 1));
 		}
 
-		/*
-		private void compute(string input)
-		{
-			string s = label.Text;
-
-			string[] entries = s.Split(' ');
-
-			string result = string.Empty;
-
-			if(entries.Length == 1)
-			{
-				var o = Parse(entries[0]);
-
-				if (o.GetType() == typeof(Binary))
-				{
-					Binary b = (Binary)o;
-					if (input == "Bin")
-						result = b.ToString();
-					else if (input == "Hex")
-						result = Hex.ConvertBinToHex(b).ToString();
-					else
-						result = "#" + Binary.ConvertBinToInt(b).ToString();
-				}
-				else if(o.GetType() == typeof(Hex))
-				{
-					Hex h = (Hex)o;
-					if (input == "Hex")
-						result = h.ToString();
-					else if (input == "Bin")
-						result = Binary.ConvertHexToBin(h).ToString();
-					else
-						result = "#" + Hex.ConvertHexToInt(h).ToString();
-				}
-				else
-				{
-					int n = (int)o;
-					if (input == "Dec")
-						result = "#" + n.ToString();
-					else if (input == "Hex")
-						result = Hex.ConvertIntToHex(n).ToString();
-					else
-						result = Binary.ConvertIntToBin(n).ToString();
-				}
-
-				label.Text = result;
-				previous = result;
-				
-				return;
-			}
-			else
-			{
-				var o1 = Parse(entries[0]);
-
-				var o2 = Parse(entries[2]);
-
-				if (o1.GetType() == typeof(Binary))
-				{
-					Binary b1 = (Binary)o1;
-					Binary b2;
-
-					if (o2.GetType() == typeof(Binary))
-						b2 = (Binary)o2;
-					else if (o2.GetType() == typeof(Hex))
-						b2 = Binary.ConvertHexToBin((Hex)o2);
-					else
-						b2 = Binary.ConvertIntToBin((int)o2);
-
-					if (entries[1] == "+")
-						label.Text = (b1 + b2).ToString();
-					else if (entries[1] == "-")
-						label.Text = (b1 - b2).ToString();
-					else if (entries[1] == "%")
-						label.Text = (b1 % b2).ToString();
-
-					for (int i = 2; i < 16; i++)
-						buttons[i].Enabled = false;
-				}
-				else if (o1.GetType() == typeof(Hex))
-				{
-					Hex h1 = (Hex)o1;
-					Hex h2;
-
-					if (o2.GetType() == typeof(Hex))
-						h2 = (Hex)o2;
-					else if (o2.GetType() == typeof(Binary))
-						h2 = Hex.ConvertBinToHex((Binary)o2);
-					else
-						h2 = Hex.ConvertIntToHex((int)o2);
-
-					if (entries[1] == "+")
-						label.Text = (h1 + h2).ToString();
-					else if (entries[1] == "-")
-						label.Text = (h1 - h2).ToString();
-					else if (entries[1] == "%")
-						label.Text = (h1 % h2).ToString();
-
-					for (int i = 0; i < 16; i++)
-						buttons[i].Enabled = true;
-				}
-				else
-				{
-					int n1 = (int)o1;
-					int n2;
-
-					if (o2.GetType() == typeof(int))
-						n2 = (int)o2;
-					else if (o2.GetType() == typeof(Hex))
-						n2 = Hex.ConvertHexToInt((Hex)o2);
-					else
-						n2 = Binary.ConvertBinToInt((Binary)o2);
-
-					if (entries[1] == "+")
-						label.Text = "#" + (n1 + n2).ToString();
-					else if (entries[1] == "-")
-						label.Text = "#" + (n1 - n2).ToString();
-					else if (entries[1] == "%")
-						label.Text = "#" + (n1 % n2).ToString();
-
-					for (int i = 0; i < 10; i++)
-						buttons[i].Enabled = true;
-					for (int i = 10; i < 16; i++)
-						buttons[i].Enabled = false;
-				}
-			}
-		}
-		*/
 		private void ConvertAndCompute(string input = "")
 		{
 			string[] entries = label.Text.Split(' ');
